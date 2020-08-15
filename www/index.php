@@ -13,13 +13,10 @@
         $link = mysqli_connect("mysql", "root", "tiger", "task list");
         $result = mysqli_query($link,"select * from tasks");
         while ($row = $result->fetch_assoc()){
-                echo $row["task_name"] . "<br>" ; 
+                echo $row["task_name"] . " -- ";
+                echo "<a href='delete.php?id={$row['task_id']}'>delete</a>";
+                echo "<br>"; 
         }
-
-        
-
-
-
 
     ?>
     <br>
