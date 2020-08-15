@@ -10,17 +10,32 @@
     <body>
     <h1>Task List</h1>
     <div id="output"></div>
-    <form action="insert.php" method="post">
-        New Task: <input type="text" name="task" /><br><br>
-        <input type="submit" />
+    <form>
+        New Task: <input type="text" name="task" id="task" /><br><br>
+        <input id="new-task-btn" type="submit" />
     </form>
 
 <script>
 
     $(document).ready(function(){
         readRecords();
+        $(document).on('click', '#new-task-btn', function(){
+        const task = $('#task').val();
+        $.ajax({
+        url: 'insert.php',
+        type: 'POST',
+        data: {
+            'task': task,
+
+        },
+        success: function(response){
+            readRecords();
+            $("#task").val("");
+    }
+        });
+    });
         // $.ajax({
-        //     url: 'fetch.php',
+        //     url: 'insert.php',
         //     type: 'POST',
         //     success: function(response){
                 
@@ -33,12 +48,24 @@
         //         $('#output').html(response);
         //     }
         // }); //document.ready
+        function addTask() {
+ 
+            const task = $("#task").val();
+            $.post("insert.php", {
+                task: task,
+            }, function (data, status) {
+                readRecords();
+                $("#task").val("");
 
-    function readRecords() {
-        $.get("fetch.php", {}, function (data, status) {
-            $('#output').html(data);
-        });
-    }
+            });
+        }   
+    
+
+        function readRecords() {
+            $.get("fetch.php", {}, function (data, status) {
+                $('#output').html(data);
+            });
+        }
 
     
 
