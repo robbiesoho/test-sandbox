@@ -15,11 +15,11 @@
 
     $name = $_POST["task"];
 
-    $sql = "INSERT INTO tasks (task_name) VALUES ('$name')";
-    if(mysqli_query($link, $sql)){
+    $query = "INSERT INTO tasks (task_name) VALUES ('$name')";
+    if(mysqli_query($link, $query)){
         echo "Task added!";
     } else{
-        echo "ERROR: Could not add task $sql. " . mysqli_error($link);
+        echo "ERROR: " . mysqli_error($link);
     }
 
     mysqli_close($link);
