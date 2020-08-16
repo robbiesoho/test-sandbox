@@ -16,11 +16,12 @@ if(mysqli_num_rows($query) > 0)
       <td>'.$row['task_name'].'</td>
       
       <td>
-        <button id=edit-'.$row['task_id'].'>Edit</button>
+        <button class=edit-btn data-id='.$row['task_id'].'>Edit</button>
       </td>
       <td>
-        <button id=delete-btn data-id='.$row['task_id'].'>Delete</button>
+        <button class=delete-btn data-id='.$row['task_id'].'>Delete</button>
       </td>
+  
       </tr>';
       
       $number++;

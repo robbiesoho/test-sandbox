@@ -11,11 +11,12 @@
       die("ERROR: Could not connect. " . mysqli_connect_error());
     }
 
-    $sql = "DELETE FROM tasks WHERE task_id = ('$id')";
-    if(mysqli_query($link, $sql)){
+    $query = "DELETE FROM tasks WHERE task_id = ('$id')";
+
+    if(mysqli_query($link, $query)){
         echo "Task deleted!";
     } else{
-        echo "ERROR: Could not delete task $sql. " . mysqli_error($link);
+        echo "ERROR: Could not delete task $query. " . mysqli_error($link);
     }
 
     mysqli_close($link);
