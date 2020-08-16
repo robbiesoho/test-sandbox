@@ -20,36 +20,22 @@
     $(document).ready(function(){
         readRecords();
         $(document).on('click', '#new-task-btn', function(){
-        const task = $('#task').val();
-        $.ajax({
-        url: 'insert.php',
-        type: 'POST',
-        data: {
-            'task': task,
+            const task = $('#task').val();
+            $.ajax({
+                url: 'insert.php',
+                type: 'POST',
+                data: {
+                    'task': task,
 
-        },
-        success: function(response){
-            readRecords();
-            $("#task").val("");
-    }
+                },
+                success: function(response){
+                    readRecords();
+                    $("#task").val("");
+                }
+            });
         });
-    });
-        // $.ajax({
-        //     url: 'insert.php',
-        //     type: 'POST',
-        //     success: function(response){
-                
-        //         // data = $.parseJSON(response)
-        //         // console.log(data)
-        //         // if(data.status=='success')
-        //         // {
-        //         //     $('#output').html(data.html);
-        //         // }
-        //         $('#output').html(response);
-        //     }
-        // }); //document.ready
+
         function addTask() {
- 
             const task = $("#task").val();
             $.post("insert.php", {
                 task: task,
@@ -59,31 +45,27 @@
 
             });
         }   
-    
 
+        $(document).on('click','#delete-btn',function(){
+            const del_id = $(this).attr('data-id'); 
+            $.ajax({
+                url: 'delete.php',
+                method: 'POST',
+                data:{id:del_id},
+                success: function(data)
+                {
+                    readRecords();
+                }
+            })
+        })
+        
         function readRecords() {
             $.get("fetch.php", {}, function (data, status) {
                 $('#output').html(data);
             });
         }
-
-    
-
-   
-     
-    
-   
-});
+    });
 
   </script>
   </body>
 </html>
-
-<!-- 
-while ($row = $query->fetch_assoc()){
-  echo $row["task_name"] . " -- ";
-  echo "<a href='delete.php?id={$row['task_id']}'>delete</a>" . " -- ";
-  echo "<a href='edit.php?id={$row['task_id']}'>edit</a>";
-  echo "<br>"; 
-} -->
-

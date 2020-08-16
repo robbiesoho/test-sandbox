@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <body>
 
@@ -7,7 +5,7 @@
 
     $link = mysqli_connect("mysql", "root", "tiger", "task list");
 
-    $id = $_GET["id"];
+    $id = $_POST['id'];
 
     if($link === false){
       die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -25,6 +23,3 @@
 
   ?>
 
-
-</body>
-</html>

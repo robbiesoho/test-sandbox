@@ -3,7 +3,7 @@
 
 $link = mysqli_connect("mysql", "root", "tiger", "task list");
 
-$query = mysqli_query($link,"select task_name from tasks");
+$query = mysqli_query($link,"select * from tasks");
 
 if(mysqli_num_rows($query) > 0)
   {
@@ -16,10 +16,10 @@ if(mysqli_num_rows($query) > 0)
       <td>'.$row['task_name'].'</td>
       
       <td>
-        <button>Edit</button>
+        <button id=edit-'.$row['task_id'].'>Edit</button>
       </td>
       <td>
-        <button>Delete</button>
+        <button id=delete-btn data-id='.$row['task_id'].'>Delete</button>
       </td>
       </tr>';
       
